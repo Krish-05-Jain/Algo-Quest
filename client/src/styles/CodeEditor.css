@@ -1,0 +1,43 @@
+textarea {
+  width: 100%;
+  max-width: 800px;
+  min-height: 400px;
+  padding: 20px;
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #d4d4d4;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: vertical;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  box-sizing: border-box; /* prevent padding from increasing width */
+  min-width: 300px; /* avoid too narrow on very small screens */
+  max-height: 80vh; /* prevent it from growing taller than viewport */
+  overflow-y: auto; /* add scrollbar if content exceeds max height */
+}
+
+textarea:focus {
+  border-color: #007acc;
+  box-shadow: 0 0 15px rgba(0, 122, 204, 0.6);
+}
+
+textarea::placeholder {
+  color: #858585;
+  font-style: italic;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Center container for the textarea */
+body {
+  background-color: #121212;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem; /* so textarea doesn't touch edges */
+}

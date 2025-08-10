@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../styles/CodeEditor.css';
 const CodeEditor = ({ code, setCode }) => (
   <textarea
     rows="15"

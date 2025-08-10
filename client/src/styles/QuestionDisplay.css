@@ -1,0 +1,61 @@
+/* Container styling for the entire question block */
+div {
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  color: #f0f0f0;
+  width: 100%;
+  max-width: 800px;
+  margin: 2rem auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-left: 5px solid #64ffda;
+}
+
+/* Heading styling for the question title */
+h2 {
+  font-size: 2rem;
+  color: #64ffda;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  border-bottom: 2px solid #333;
+  padding-bottom: 1rem;
+}
+
+/* Styling for the topic and level paragraphs */
+p {
+  font-size: 1.1rem;
+  color: #d4d4d4;
+  margin: 0.5rem 0;
+}
+
+/* Bolding the labels (Topic, Level) */
+p b {
+  color: #f0f0f0;
+  font-weight: 600;
+}
+
+/* Styling for the <pre> tag containing the question description */
+pre {
+  background-color: #2a2a2a;
+  color: #c5c8c6;
+  padding: 1.5rem;
+  border-radius: 8px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 1.5rem;
+  border: 1px solid #333;
+}
+
+/* Optional: Body/page styling to center the component */
+body {
+  background-color: #121212;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../styles/QuestionDisplay.css';
 const QuestionDisplay = ({ question }) => {
   if (!question) return <p>Loading question...</p>;
 

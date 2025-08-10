@@ -1,0 +1,54 @@
+/* Avoid styling all divs globally — use a class */
+.progress-container {
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  color: #f0f0f0;
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  border-left: 5px solid #64ffda;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.progress-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.progress-container h2 {
+  font-size: 2rem;
+  color: #64ffda;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 700;
+}
+
+.progress-container p {
+  font-size: 1.1rem;
+  color: #d4d4d4;
+  margin: 0.5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.progress-container p span {
+  color: #fff;
+  font-weight: 600;
+  margin-left: 8px;
+  letter-spacing: 0.5px;
+}
+
+body {
+  background-color: #121212;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
