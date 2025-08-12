@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // ✅ Import navigate
 import '../styles/AuthForm.css';
+
 const AuthForm = ({ isLogin }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // ✅ Initialize navigate
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,7 +15,7 @@ const AuthForm = ({ isLogin }) => {
       const url = `http://localhost:5000/api/auth/${isLogin ? 'login' : 'signup'}`;
       const body = isLogin
         ? { email, password }
-        : { username, email, password }; // signup also sends username
+        : { username, email, password }; 
 
       const res = await fetch(url, {
         method: 'POST',
@@ -24,8 +27,8 @@ const AuthForm = ({ isLogin }) => {
       console.log(data);
 
       if (res.ok) {
-        localStorage.setItem('token', data.token); // store JWT
-        alert(`${isLogin ? 'Login' : 'Signup'} successful!`);
+        localStorage.setItem('token', data.token); 
+        navigate('/dashboard', { replace: true });
       } else {
         alert(data.msg || 'Something went wrong');
       }

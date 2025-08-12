@@ -5,6 +5,7 @@ import { AuthProvider } from './context/AuthContext';
 import LoginPage from './pages/LoginPage';
 import QuestionPage from './pages/QuestionPage';
 import DashboardPage from './pages/DashboardPage';
+import SignupPage from './pages/SignupPage';
 import Navbar from './components/Navbar';
 
 const App = () => (
@@ -13,6 +14,7 @@ const App = () => (
       <Navbar />
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
         <Route path="/question" element={<QuestionPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
       </Routes>

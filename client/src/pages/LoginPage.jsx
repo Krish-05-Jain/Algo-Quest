@@ -5,8 +5,6 @@ const LoginPage = () => (
   <div>
     <h1>Algo Quest Login</h1>
     <AuthForm isLogin={true} />
-    <p>or</p>
-    <AuthForm isLogin={false} />
   </div>
 );
 

@@ -2,28 +2,54 @@ import React, { useEffect, useState } from 'react';
 import { getProfile } from '../api/user';
 import axios from 'axios';
 
-const Dashboard = ({ token }) => {
+const Dashboard = () => {
+  const token = localStorage.getItem('token');
   const [user, setUser] = useState(null);
   const [levelQuestions, setLevelQuestions] = useState(0);
   const [solvedInLevel, setSolvedInLevel] = useState(0);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
-      const profile = await getProfile(token);
-      if (!profile) return;
+      try {
+        if (!token) {
+          setError("No token found. Please log in again.");
+          return;
+        }
 
-      setUser(profile);
+        const profile = await getProfile(token);
 
-      const res = await axios.get(`http://localhost:5000/api/questions/level/${profile.level}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+        if (!profile || typeof profile !== 'object') {
+          setError("Invalid profile data received from server.");
+          return;
+        }
 
-      setLevelQuestions(res.data.length);
-      const solved = res.data.filter(q =>
-        profile.progress.includes(q._id)
-      ).length;
+        // If backend sends { user: { ... } } instead of plain object
+        const userData = profile.user || profile;
+        setUser(userData);
 
-      setSolvedInLevel(solved);
+        const res = await axios.get(
+          `http://localhost:5000/api/questions/level/${userData.level || 0}`,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+
+        if (!Array.isArray(res.data)) {
+          setError("Invalid questions data received.");
+          return;
+        }
+
+        setLevelQuestions(res.data.length);
+
+        const solved = res.data.filter(q =>
+          Array.isArray(userData.progress) && userData.progress.includes(q._id)
+        ).length;
+
+        setSolvedInLevel(solved);
+
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load dashboard data.");
+      }
     };
 
     fetchData();
@@ -32,12 +58,17 @@ const Dashboard = ({ token }) => {
   return (
     <div>
       <h2>Your Dashboard</h2>
+
+      {error && <p style={{ color: "red" }}>⚠ {error}</p>}
+
+      {!error && !user && <p>Loading your profile...</p>}
+
       {user && (
         <>
-          <p>👤 Username: {user.username}</p>
-          <p>🏆 Current Level: {user.level}</p>
-          <p>✅ Total Solved: {user.progress.length}</p>
-          <p>📊 Progress in Level {user.level}: {solvedInLevel}/{levelQuestions}</p>
+          <p>👤 Username: {user.username || "N/A"}</p>
+          <p>🏆 Current Level: {user.level || 0}</p>
+          <p>✅ Total Solved: {Array.isArray(user.progress) ? user.progress.length : 0}</p>
+          <p>📊 Progress in Level {user.level || 0}: {solvedInLevel}/{levelQuestions}</p>
           <progress value={solvedInLevel} max={levelQuestions}></progress>
         </>
       )}
