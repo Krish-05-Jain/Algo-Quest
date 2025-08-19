@@ -12,6 +12,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const questions = require('./routes/questions');
+
 // MongoDB connection
 mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
@@ -22,6 +24,8 @@ mongoose.connect(process.env.MONGO_URI, {
     console.error('❌ MongoDB connection error:', err);
     process.exit(1);
 });
+
+
 
 // Routes
 const authRoutes = require('./routes/auth');
@@ -40,6 +44,7 @@ app.use('/api/user', userRoutes);
 app.get('/', (req, res) => {
     res.send('🚀 Algo Quest Backend is running...');
 });
+
 
 // Server listening
 const PORT = process.env.PORT || 5000;

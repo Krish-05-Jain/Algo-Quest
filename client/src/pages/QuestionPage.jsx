@@ -11,24 +11,32 @@ const QuestionPage = () => {
   const [output, setOutput] = useState('');
   const { token } = useContext(AuthContext);
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/questions/random', {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(res => setQuestion(res.data))
-    .catch(() => setOutput('Error occurred'));
-  }, []);
+const [error, setError] = useState('');
+
+useEffect(() => {
+  console.log("Token being sent:", token);
+  axios.get('http://localhost:5000/api/questions/random', {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+  .then(res => setQuestion(res.data))
+  .catch(err => {
+    console.error('Error fetching question:', err);
+    setError('Error occurred while fetching question');
+  });
+}, [token]);
+
 
   const handleSubmit = () => {
-    axios.post('http://localhost:5000/api/submissions/submit', {
-      questionId: question._id,
-      userCode: code
-    }, {
-      headers: { Authorization: `Bearer ${token}` }
-    })
-    .then(res => setOutput(res.data.msg))
-    .catch(() => setOutput('Error occurred'));
-  };
+  axios.post('http://localhost:5000/api/submissions/submit', {
+    questionId: question._id,
+    userCode: code
+  }, {
+    headers: { Authorization: `Bearer ${token}` }
+  })
+  .then(res => setOutput(res.data.msg))
+  .catch(() => setOutput('Error occurred'));
+};
+
 
   return (
     <div>

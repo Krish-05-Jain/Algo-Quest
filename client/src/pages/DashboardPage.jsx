@@ -41,8 +41,10 @@ const Dashboard = () => {
         setLevelQuestions(res.data.length);
 
         const solved = res.data.filter(q =>
-          Array.isArray(userData.progress) && userData.progress.includes(q._id)
-        ).length;
+  Array.isArray(userData.progress) && userData.progress.includes(q._id)
+).length;
+
+
 
         setSolvedInLevel(solved);
 
@@ -59,7 +61,7 @@ const Dashboard = () => {
     <div>
       <h2>Your Dashboard</h2>
 
-      {error && <p style={{ color: "red" }}>⚠ {error}</p>}
+      {error && <p style={{ color: "red" }}> {error}</p>}
 
       {!error && !user && <p>Loading your profile...</p>}
 

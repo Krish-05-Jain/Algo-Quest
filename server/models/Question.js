@@ -1,17 +1,17 @@
 const mongoose = require('mongoose');
 
 const questionSchema = new mongoose.Schema({
-  title: String,
-  topic: String,
-  level: Number,
-  description: String,
+  title: { type: String, required: true, trim: true },
+  topic: { type: String, required: true, trim: true },
+  level: { type: Number, required: true },
+  description: { type: String, required: true, trim: true },
   testCases: [
     {
-      input: String,
-      output: String
+      input: { type: String, required: true, trim: true },
+      output: { type: String, required: true, trim: true }
     }
   ],
-  sampleSolution: String // used for validation
+  sampleSolution: { type: String, trim: true }
 });
 
 module.exports = mongoose.model('Question', questionSchema);
