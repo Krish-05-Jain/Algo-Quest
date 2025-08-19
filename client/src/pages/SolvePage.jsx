@@ -9,6 +9,7 @@ const SolvePage = ({ questionId, token }) => {
   const [userCode, setUserCode] = useState('');
   const [customInput, setCustomInput] = useState('');
   const [result, setResult] = useState(null);
+  
 
   useEffect(() => {
     const fetchQuestion = async () => {
@@ -26,7 +27,7 @@ const SolvePage = ({ questionId, token }) => {
     const res = await submitCode(token, { questionId, userCode, customInput });
     setResult(res);
   };
-
+  
   return (
     <div>
       {question && (
@@ -53,6 +54,7 @@ const SolvePage = ({ questionId, token }) => {
 
           <br />
           <button onClick={handleSubmit}>Run & Submit</button>
+          
 
           {result && (
             <div>

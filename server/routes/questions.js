@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Question = require('../models/Question');
 const User = require('../models/userProfile');
-const verifyToken = require('../middleware/verifyTokens'); // middleware to get user from JWT
+const verifyToken = require('../middleware/verifyTokens'); 
 
 // GET /api/questions/random
 // GET /api/questions/random
@@ -24,7 +24,8 @@ router.get('/random', verifyToken, async (req, res) => {
       topic: randomQuestion.topic,
       level: randomQuestion.level,
       description: randomQuestion.description,
-      testCases: randomQuestion.testCases // Send full test cases
+      testCases: randomQuestion.testCases,
+      hint: randomQuestion.hint
     });
   } catch (err) {
     res.status(500).json({ msg: 'Error occurred' });

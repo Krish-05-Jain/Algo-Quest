@@ -11,7 +11,8 @@ const questionSchema = new mongoose.Schema({
       output: { type: String, required: true, trim: true }
     }
   ],
-  sampleSolution: { type: String, trim: true }
+  sampleSolution: { type: String, trim: true },
+  hint: { type: String, trim: true }
 });
 
 module.exports = mongoose.model('Question', questionSchema);
